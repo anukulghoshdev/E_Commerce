@@ -1,0 +1,41 @@
+{% extends 'base.html ' %}
+{% block title_block %} Product Details {% endblock %}
+{% block body_block %}
+
+    <div class="container my-5 ">
+        <div class="">
+            <div class="row">
+                <aside class="col-sm-5 border-right">
+                    <article class="gallery-wrap">
+                        <div class="img-big-wrap img-small-wrap">
+                            <div class="item-gallery">
+                                <a href="#"><img src="/media/{{ product.mainimage }}" style="width:320px"></a>
+                            </div>
+                        </div>
+                    </article>
+                </aside>
+                <aside class="col-sm-7">
+                    <article class="card-body p-5">
+                        <h3 class="title mp-3">{{ product.name }}</h3>
+                        <p class="price-detail-wrap">
+              <span class="price h3 text-warning">
+                <span class="currency">BDT &#2547;</span><span class="num">{{ product.price }}</span>
+              </span>
+                        </p>
+                        <dl class="item-property">
+                            <dt>Description</dt>
+                            <dd>
+                                <p>{{ product.detail_text|linebreaks }}</p>
+                                <a href="{% url 'App_Order:add_to_cart' pk=product.pk %}"
+                                   class="btn btn-lg btn-outline-primary text-uppercase"><i
+                                        class="fas fa-shopping-cart"></i> Add to Cart</a>
+                            </dd>
+
+                        </dl>
+
+                    </article>
+                </aside>
+            </div>
+        </div>
+    </div>
+{% endblock %}

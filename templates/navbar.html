@@ -1,0 +1,37 @@
+{% load cart_tag %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <div class="container">
+        <a href="{% url 'App_Shop:home' %}" class="navbar-brand">Django-Ecommerce</a>
+
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a href="{% url 'App_Order:cart' %}" class="nav-link">
+                            <i class="fa fa-shopping-cart"></i> Cart
+                            <span class="badge badge-light">{{ request.user | cart_total }}</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                class="fas fa-user-tie"></i> {{ request.user.user_profile.username }}</a>
+                        <div class="dropdown-menu" aria-labelledby="nabbarDropdown">
+                            <a href="{% url 'App_RegLog:profile' %}" class="dropdown-item">Profile</a>
+                            <a href="#" class="dropdown-item">Orders</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'App_RegLog:logout' %}">Logout</a>
+                        </div>
+
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
